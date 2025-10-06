@@ -147,6 +147,33 @@ footer {
     border-color: $wger-border;
 }
 
+.list-group {
+    --bs-list-group-color: #{$wger-text-primary};
+    --bs-list-group-bg: #{$wger-surface};
+    --bs-list-group-border-color: #{$wger-border};
+    --bs-list-group-hover-bg: #{mix($wger-primary, $wger-surface, 12%)};
+    --bs-list-group-action-hover-color: #{$wger-text-primary};
+    --bs-list-group-action-hover-bg: #{mix($wger-primary, $wger-surface, 12%)};
+    --bs-list-group-active-color: #{$wger-text-primary};
+    --bs-list-group-active-bg: #{mix($wger-primary, $wger-surface, 18%)};
+    --bs-list-group-active-border-color: #{lighten($wger-primary, 5%)};
+    --bs-list-group-disabled-color: #{transparentize($wger-text-primary, 0.3)};
+    --bs-list-group-disabled-bg: #{mix($wger-surface, $wger-border, 60%)};
+}
+
+.list-group-item-action {
+    &:focus,
+    &:hover,
+    &:active {
+        background-color: var(--bs-list-group-action-hover-bg);
+        color: var(--bs-list-group-action-hover-color);
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 0.2rem rgba($wger-primary, 0.35);
+    }
+}
+
 .table,
 .table-striped > tbody > tr:nth-of-type(odd) > * {
     color: $wger-text-primary;
