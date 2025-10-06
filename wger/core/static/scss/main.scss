@@ -1,33 +1,95 @@
 /*
  * wger customization for bootstrap
  *
- * https://coolors.co/e63946-a8dadc-457b9d-1d3557-cba328-296713-266dd3-a5a5b6
+ * Aligns the server-rendered UI with the dark theme used in the React bundle.
  */
 
-$wger-blue: #2A4C7D !default;
-$wger-blue-2: #266dd3 !default;
-$wger-blue-light-2: #a8dadc !default;
-$wger-light: #f4f4f6 !default;
-$wger-light-2: #dddde3 !default;
-$wger-light-3: #a5a5b6 !default;
-$wger-red: #e63946 !default;
-$wger-yellow: #cba328 !default;
-$wger-green: #307916 !default;
+$wger-background: #121212;
+$wger-surface: #1e1e1e;
+$wger-surface-alt: #242424;
+$wger-border: #2a2a2a;
+$wger-border-light: #333333;
 
-$link-color: $wger-blue-2 !default;
+$wger-primary: #d32f2f;
+$wger-primary-contrast: #ffffff;
+$wger-secondary: #ff5252;
+$wger-success: #66bb6a;
+$wger-info: #ff8a80;
+$wger-warning: #f2c94c;
+$wger-danger: #f06262;
+
+$wger-text-primary: #f5f5f5;
+$wger-text-secondary: #ffb4b4;
+$wger-text-muted: #c1c1c1;
+
+$link-color: $wger-secondary;
+$link-hover-color: lighten($wger-secondary, 10%);
+
+$body-bg: $wger-background;
+$body-color: $wger-text-primary;
+$body-secondary-color: $wger-text-secondary;
+$body-tertiary-color: $wger-text-muted;
+$border-color: $wger-border;
+$border-radius: .5rem;
+
+$headings-color: $wger-text-primary;
+$card-bg: $wger-surface;
+$card-color: $wger-text-primary;
+$card-border-color: $wger-border;
+$card-cap-bg: $wger-surface-alt;
+
+$input-bg: $wger-surface-alt;
+$input-color: $wger-text-primary;
+$input-border-color: $wger-border;
+$input-placeholder-color: mix($wger-text-muted, $wger-background, 65%);
+$input-focus-bg: $wger-surface;
+$input-focus-border-color: lighten($wger-primary, 5%);
+
+$navbar-dark-color: $wger-text-muted;
+$navbar-dark-hover-color: $wger-text-primary;
+$navbar-dark-active-color: $wger-primary;
+
+$dropdown-bg: $wger-surface;
+$dropdown-color: $wger-text-primary;
+$dropdown-link-color: $wger-text-primary;
+$dropdown-link-hover-bg: mix($wger-primary, $wger-surface, 20%);
+$dropdown-divider-bg: $wger-border-light;
+
+$popover-bg: $wger-surface;
+$popover-border-color: $wger-border;
+$tooltip-bg: mix($wger-primary, $wger-background, 40%);
+$tooltip-color: $wger-text-primary;
+
+$modal-content-bg: $wger-surface;
+$modal-content-color: $wger-text-primary;
+$modal-content-border-color: $wger-border;
+
+$code-color: $wger-warning;
+$kbd-bg: $wger-primary;
+$kbd-color: $wger-primary-contrast;
+
+$table-bg: transparent;
+$table-border-color: $wger-border;
+$table-color: $wger-text-primary;
+$table-striped-bg: $wger-surface-alt;
+$table-hover-bg: mix($wger-primary, $wger-surface, 12%);
+
+$btn-close-color: $wger-text-primary;
+$btn-close-opacity: .6;
+$btn-close-hover-opacity: .8;
 
 @import "../yarn/bootstrap/scss/functions";
 @import "../yarn/bootstrap/scss/variables";
 
 $theme-colors: (
-    "primary": $wger-blue,
-    "secondary": $wger-red,
-    "success": $wger-green,
-    "info": $info,
-    "warning": $wger-yellow,
-    "danger": $danger,
-    "light": $wger-light,
-    "dark": $dark
+    "primary": $wger-primary,
+    "secondary": $wger-secondary,
+    "success": $wger-success,
+    "info": $wger-info,
+    "warning": $wger-warning,
+    "danger": $wger-danger,
+    "light": $wger-surface,
+    "dark": $wger-background
 );
 
 $font-family-sans-serif: "Open Sans Light";
@@ -39,3 +101,162 @@ $enable-responsive-font-sizes: true;
  * Import the rest of the bootstrap files
  */
 @import "../yarn/bootstrap/scss/bootstrap";
+
+/*
+ * Post-bootstrap overrides to ensure dark theme consistency.
+ */
+:root {
+    --bs-body-bg: #{$wger-background};
+    --bs-body-color: #{$wger-text-primary};
+    --bs-emphasis-color: #{$wger-primary-contrast};
+    --bs-secondary-color: #{$wger-text-secondary};
+    --bs-secondary-color-rgb: #{red($wger-text-secondary)}, #{green($wger-text-secondary)}, #{blue($wger-text-secondary)};
+    --bs-border-color: #{$wger-border};
+    --bs-card-bg: #{$wger-surface};
+    --bs-card-color: #{$wger-text-primary};
+    --bs-card-border-color: #{$wger-border};
+    --bs-heading-color: #{$wger-text-primary};
+    --bs-link-color: #{$wger-secondary};
+    --bs-link-hover-color: #{lighten($wger-secondary, 10%)};
+}
+
+body {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+}
+
+a {
+    color: var(--bs-link-color);
+
+    &:hover,
+    &:focus {
+        color: var(--bs-link-hover-color);
+    }
+}
+
+.card,
+.dropdown-menu,
+.modal-content,
+.list-group-item,
+.offcanvas,
+.popover,
+.toast,
+footer {
+    background-color: $wger-surface;
+    color: $wger-text-primary;
+    border-color: $wger-border;
+}
+
+.list-group {
+    --bs-list-group-color: #{$wger-text-primary};
+    --bs-list-group-bg: #{$wger-surface};
+    --bs-list-group-border-color: #{$wger-border};
+    --bs-list-group-hover-bg: #{mix($wger-primary, $wger-surface, 12%)};
+    --bs-list-group-action-hover-color: #{$wger-text-primary};
+    --bs-list-group-action-hover-bg: #{mix($wger-primary, $wger-surface, 12%)};
+    --bs-list-group-active-color: #{$wger-text-primary};
+    --bs-list-group-active-bg: #{mix($wger-primary, $wger-surface, 18%)};
+    --bs-list-group-active-border-color: #{lighten($wger-primary, 5%)};
+    --bs-list-group-disabled-color: #{transparentize($wger-text-primary, 0.3)};
+    --bs-list-group-disabled-bg: #{mix($wger-surface, $wger-border, 60%)};
+}
+
+.list-group-item-action {
+    &:focus,
+    &:hover,
+    &:active {
+        background-color: var(--bs-list-group-action-hover-bg);
+        color: var(--bs-list-group-action-hover-color);
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 0.2rem rgba($wger-primary, 0.35);
+    }
+}
+
+.table,
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    color: $wger-text-primary;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    background-color: $wger-surface-alt;
+}
+
+.table-hover > tbody > tr:hover > * {
+    background-color: mix($wger-primary, $wger-surface, 12%);
+    color: $wger-text-primary;
+}
+
+input,
+textarea,
+select,
+.form-control,
+.form-select {
+    background-color: $wger-surface-alt;
+    color: $wger-text-primary;
+    border-color: $wger-border;
+
+    &:focus {
+        background-color: $wger-surface;
+        border-color: lighten($wger-primary, 5%);
+        color: $wger-text-primary;
+    }
+}
+
+.navbar,
+.navbar-nav .nav-link,
+.btn,
+.badge {
+    color: $wger-text-primary;
+}
+
+.btn-primary,
+.btn-danger,
+.btn-success,
+.btn-warning,
+.btn-secondary {
+    border: none;
+}
+
+.btn-primary {
+    background-color: $wger-primary;
+
+    &:hover,
+    &:focus {
+        background-color: lighten($wger-primary, 5%);
+    }
+}
+
+.btn-secondary {
+    background-color: $wger-secondary;
+
+    &:hover,
+    &:focus {
+        background-color: lighten($wger-secondary, 5%);
+    }
+}
+
+.btn-outline-secondary,
+.btn-outline-light {
+    color: $wger-text-primary;
+    border-color: $wger-border;
+
+    &:hover,
+    &:focus {
+        background-color: $wger-secondary;
+        color: $wger-primary-contrast;
+        border-color: lighten($wger-secondary, 5%);
+    }
+}
+
+.bg-light,
+.bg-white,
+.bg-body {
+    background-color: $wger-surface !important;
+    color: $wger-text-primary !important;
+}
+
+.text-muted {
+    color: $wger-text-muted !important;
+}
